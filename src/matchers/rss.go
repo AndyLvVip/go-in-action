@@ -2,7 +2,7 @@ package matchers
 
 import (
 	"encoding/xml"
-	"code/chapter2/sample/search"
+	"search"
 	"errors"
 	"net/http"
 	"fmt"
@@ -52,6 +52,7 @@ type (
 type rssMatcher struct {}
 
 func init() {
+	fmt.Println("rss init...")
 	var matcher rssMatcher
 	search.Register("rss", matcher)
 }

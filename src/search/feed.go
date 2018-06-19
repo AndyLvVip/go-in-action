@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-const dataFile = "G:/workspace/go-workspace/go-in-action/src/code/chapter2/sample/data/data.json"
+const dataFile = "data/data.json"
 
 type Feed struct {
 	Name string `json:"site"`
@@ -21,6 +21,6 @@ func RetrieveFeeds() ([]*Feed, error) {
 	defer file.Close()
 
 	var feeds []*Feed
-	err = json.NewDecoder(file).Decode(feeds)
+	err = json.NewDecoder(file).Decode(&feeds)
 	return feeds, err
 }
