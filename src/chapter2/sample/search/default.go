@@ -2,7 +2,7 @@ package search
 
 import "fmt"
 
-type defaultMatcher struct {}
+type defaultMatcher struct{}
 
 func (matcher defaultMatcher) Search(feed *Feed, searchTem string) ([]*Result, error) {
 	return nil, nil

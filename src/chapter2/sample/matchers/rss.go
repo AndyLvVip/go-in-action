@@ -1,55 +1,55 @@
 package matchers
 
 import (
-	"encoding/xml"
 	"chapter2/sample/search"
+	"encoding/xml"
 	"errors"
-	"net/http"
 	"fmt"
 	"log"
+	"net/http"
 	"regexp"
 )
 
 type (
 	item struct {
-		XMLName xml.Name `xml:"item"`
-		PubDate string `xml:"pubDate"`
-		Title string `xml:"title"`
-		Description string `xml:"description"`
-		Link string `xml:"link"`
-		GUID string `xml:"guid"`
-		GeoRssPoint string `xml:"georss:point"`
+		XMLName     xml.Name `xml:"item"`
+		PubDate     string   `xml:"pubDate"`
+		Title       string   `xml:"title"`
+		Description string   `xml:"description"`
+		Link        string   `xml:"link"`
+		GUID        string   `xml:"guid"`
+		GeoRssPoint string   `xml:"georss:point"`
 	}
 
 	image struct {
 		XMLName xml.Name `xml:"image"`
-		URL string `xml:"url"`
-		Title string `xml:"title"`
-		Link string `xml:"link"`
+		URL     string   `xml:"url"`
+		Title   string   `xml:"title"`
+		Link    string   `xml:"link"`
 	}
 
 	channel struct {
-		XMLName xml.Name `xml:"channel"`
-		Title string `xml:"title"`
-		Description string `xml:"description"`
-		Link string `xml:"link"`
-		PubDate string `xml:"pubDate"`
-		LastBuildDate string `xml:"lastBuildDate"`
-		TTL string `xml:"ttl"`
-		Language string `xml:"language"`
-		ManagingEditor string `xml:"managingEditor"`
-		WebMaster string `xml:"webMaster"`
-		Image image `xml:"image"`
-		Item []item `xml:"item"`
+		XMLName        xml.Name `xml:"channel"`
+		Title          string   `xml:"title"`
+		Description    string   `xml:"description"`
+		Link           string   `xml:"link"`
+		PubDate        string   `xml:"pubDate"`
+		LastBuildDate  string   `xml:"lastBuildDate"`
+		TTL            string   `xml:"ttl"`
+		Language       string   `xml:"language"`
+		ManagingEditor string   `xml:"managingEditor"`
+		WebMaster      string   `xml:"webMaster"`
+		Image          image    `xml:"image"`
+		Item           []item   `xml:"item"`
 	}
 
 	rssDocument struct {
 		XMLName xml.Name `xml:"rss"`
-		Channel channel `xml:"channel"`
+		Channel channel  `xml:"channel"`
 	}
 )
 
-type rssMatcher struct {}
+type rssMatcher struct{}
 
 func init() {
 	fmt.Println("rss init...")
@@ -95,9 +95,8 @@ func (matcher rssMatcher) Search(feed *search.Feed, searchTerm string) ([]*searc
 
 		if matched {
 			results = append(results, &search.Result{
-				Field: "Title",
+				Field:   "Title",
 				Content: channelItem.Title,
-
 			})
 		}
 
@@ -107,7 +106,7 @@ func (matcher rssMatcher) Search(feed *search.Feed, searchTerm string) ([]*searc
 		}
 		if matched {
 			results = append(results, &search.Result{
-				Field: "Description",
+				Field:   "Description",
 				Content: channelItem.Description,
 			})
 		}

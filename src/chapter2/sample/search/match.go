@@ -10,7 +10,7 @@ type Matcher interface {
 }
 
 type Result struct {
-	Field string
+	Field   string
 	Content string
 }
 
